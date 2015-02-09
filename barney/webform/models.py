@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Order(models.Model):
-    address = models.TextField()
-    plan = models.TextField()
-    validated_address = models.TextField()
-    sku = models.TextField()
+    address = models.TextField(default='')
+    plan = models.TextField(default='')
+    validated_address = models.TextField(default='')
+    sku = models.TextField(default='')
