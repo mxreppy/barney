@@ -10,12 +10,7 @@
 
 <form action="/" method="post">
 {% csrf_token %}
-    <label>Address: </label>
-    <input type="text" name="address" value="123 Main St" />
-
-    <label>Plan: </label>
-    <input type="text" name="plan" value="rock & roll energy plan" />
-
+    {{ form }}
     <input type="submit" value="Go" />
 </form>
 
@@ -23,5 +18,11 @@
 <img style='width:200px;' src="http://httpcats.herokuapp.com/429.jpg"/>
 
 
+<h6>Content should be hidden...</h6>
+<p>order id: {{order.id}}
+<p>order addr: {{order.address}}
+<p>order plan: {{order.plan}}
+<p>order validated addr: {{order.validated_address}}
+<p>order sku: {{order.sku}}
 </body>
 </html>
