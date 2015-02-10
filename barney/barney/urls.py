@@ -9,4 +9,6 @@ urlpatterns = patterns('',
 
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.home, name='home'),
+    url(r'^order/(.+)/$', views.home, name='active_order'),
+
 )
