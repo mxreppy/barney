@@ -1,7 +1,8 @@
 from django import forms
+from webform.models import Order
 
 
-class OrderForm(forms.Form):
-    address = forms.CharField(label='Address', max_length=256)
-    plan = forms.CharField(label='Plan Name', max_length=75)
-    # id = forms.CharField()
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['address', 'plan']
