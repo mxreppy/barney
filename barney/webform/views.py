@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from webform.forms import OrderForm
 from webform.models import Order
 
+from webform.queue.messages import post as message_post
+
 # Create your views here.
 
 
@@ -50,10 +52,18 @@ def home(request, order_id=None):
             order.plan = request.POST['plan']
             order.save()
 
+            message_post(
+                message_type='validate_address',
+                body={
+                    'address': order.address,
+                    'order_id': order.id
+                }
+            )
+
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            # TODO: reverse 
+            # TODO: reverse
             return HttpResponseRedirect('/order/{}/'.format(order.id))
 
     # if a GET (or any other method) we'll create a blank form
