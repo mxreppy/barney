@@ -1,7 +1,9 @@
 from django.db import models
 
-# Create your models here.
+# need to import the receiver to run it...
+import webform.receiver
 
+# Create your models here.
 
 class Order(models.Model):
     address = models.TextField(default='')
