@@ -32,7 +32,7 @@ DATABASES = {
 * so need localhost postgres db or change settings (sqlite would be fine)
     * barneydb database
     * barney user with login and createdb
-        * `python3 manage.py makemigration`
+        * `python3 manage.py makemigrations`
         * `python3 manage.py migrate`
      
 ## running web server
