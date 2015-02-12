@@ -19,7 +19,7 @@ export aws_access_key_id=AKIAXXXXXX
 
 * `python3 manage.py runserver`  -- will see stupid web form at http:/127.0.0.1:8000/
 * a post with the 'go' button will create an Order object and post a message to sqs
-    * `django-example-reppy2` queue (defined in `webform/receiver.py` QUEUE variable)
+    * `django-example-reppy2` queue (defined in `settings.py` SQS_QUEUE variable)
     
    
 ## running message processor

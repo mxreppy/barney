@@ -1,18 +1,19 @@
 from django.db import models
 from datetime import datetime
+
 # from boto.sqs.message import RawMessage
 
 from webform.queue.messages import post
+from barney.settings import SQS_QUEUE
+
 
 # import json
 
-# import needed to enumerate
+# import needed to enumerate the receiver queue system
+# (may only be needed for the runreciever command)
 import webform.receiver as receiver
-#
+
 print('webform receiver queue {}'.format(receiver.QUEUE))
-
-
-# Create your models here.
 
 
 class Order(models.Model):
@@ -29,12 +30,15 @@ class Order(models.Model):
         }
 
         # Put the message in the queue
+        print("sending body {}".format(message_body))
+
+        # non intuitive way to send messages via the receiver...
+        # also doesn't work currently, so not used
+
         # m = RawMessage()
         # m.set_body(json.dumps(message_body))
-        print("sending body {}".format(message_body))
-        # non intuitive way to send messages via the receiver...
         # receiver.receive_message(m)
 
         post(message_type='validate_address', body=message_body)
-        print('sent')
-        pass
+
+        print('message sent')
