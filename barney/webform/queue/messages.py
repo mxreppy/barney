@@ -1,6 +1,6 @@
 __author__ = 'mikey'
 
-from .sqs import post as sqs_post
+from webform.queue.sqs import post as sqs_post
 
 
 def post(message_type='None', body=None):

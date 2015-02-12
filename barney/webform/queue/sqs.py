@@ -3,16 +3,18 @@ import boto
 import json
 from boto.sqs.message import RawMessage
 
+from webform.receiver import QUEUE
+
 # QUEUE_NAME = 'arn:aws:sqs:us-east-1:106715121600:django-example-reppy'
-QUEUE_NAME = 'django-example-reppy'
+# QUEUE_NAME = 'django-example-reppy'
 
 
 def post(message_type='None', body=None):
 
     # Connect to SQS and open the queue
     sqs = boto.connect_sqs()
-    # q = sqs.create_queue(QUEUE_NAME)
-    my_queue = sqs.get_queue(QUEUE_NAME)
+    # q = sqs.create_queue(QUEUE)
+    my_queue = sqs.get_queue(QUEUE)
     body['message_type'] = message_type
 
     # Put the message in the queue

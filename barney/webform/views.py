@@ -52,13 +52,15 @@ def home(request, order_id=None):
             order.plan = request.POST['plan']
             order.save()
 
-            message_post(
-                message_type='validate_address',
-                body={
-                    'address': order.address,
-                    'order_id': order.id
-                }
-            )
+            order.send_address_for_validation()
+
+            # message_post(
+            #     message_type='validate_address',
+            #     body={
+            #         'address': order.address,
+            #         'order_id': order.id
+            #     }
+            # )
 
             # process the data in form.cleaned_data as required
             # ...
