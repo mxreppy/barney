@@ -1,4 +1,5 @@
 Django==1.7.4
 boto==2.36.0
-pika==0.9.14
+django-sqs==0.2
 psycopg2==2.6
+python3-pika==0.9.14
