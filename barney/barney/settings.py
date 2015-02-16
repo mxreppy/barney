@@ -95,7 +95,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('aws_secret_access_key', 'secret_key')
 SQS_DEFAULT_VISIBILITY_TIMEOUT = 30  # seconds
 SQS_POLL_PERIOD = 0.25  # seconds
 AWS_REGION = 'us-east-1'
-SQS_QUEUE = "django-example-reppy2"
+SQS_QUEUE = "django-example-reppy3"
 
 
 # print( "access is {} and secret is {}".format(
