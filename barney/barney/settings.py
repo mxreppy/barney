@@ -88,17 +88,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# required for django-sqs but hopefully we can fix that
-AWS_ACCESS_KEY_ID = os.environ.get('aws_access_key_id', 'access_key')
-AWS_SECRET_ACCESS_KEY = os.environ.get('aws_secret_access_key', 'secret_key')
-# SQS_QUEUE_PREFIX = 'django'
 SQS_DEFAULT_VISIBILITY_TIMEOUT = 30  # seconds
 SQS_POLL_PERIOD = 0.25  # seconds
 AWS_REGION = 'us-east-1'
 SQS_QUEUE = "django-example-reppy2"
-
-
-# print( "access is {} and secret is {}".format(
-#     AWS_ACCESS_KEY_ID,
-#     AWS_SECRET_ACCESS_KEY)
-# )

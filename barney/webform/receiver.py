@@ -10,14 +10,33 @@ QUEUE = SQS_QUEUE
 
 @receiver(QUEUE)
 def receive_message(msg):
-    print('at {}, msg received: {}'.format(
-        datetime.now().time(),
-        msg.get_body()
-    )
-    )
+    # print('at {}, msg received: {}'.format(
+    #     datetime.now().time(),
+    #     msg.get_body()
+    # )
+    # )
 
     try:
-        _dict = json.loads(msg.get_body())
+        body_dict = json.loads(msg.get_body())
+
+        now = datetime.utcnow()
+        print(" [x] sqs listen at %s Received %r" % (
+            now.time(),
+            body_dict,
+        ))
+
+        # setting, cheap and sleazy isotime on the sending side
+        # 'timestamp': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+        send_time = datetime.strptime(
+            body_dict.get('timestamp', ''),
+            '%Y-%m-%dT%H:%M:%S.%fZ'
+        )
+
+        delta = now - send_time
+
+        print("message send+receive delta {}".format(
+            delta)
+        )
 
         # circular
         #
