@@ -9,31 +9,11 @@ from webform.queue.messages import post as message_post
 # Create your views here.
 
 
-def home1(request):
-    print("in home")
+# import needed to enumerate the receiver queue system
+# (may only be needed for the runreciever command)
+import webform.receiver as receiver
 
-    if request.method == 'POST':
-        print("Posting address {} and plan {}".format(
-            request.POST['address'],
-            request.POST['plan'])
-        )
-
-        order = Order.objects.create()
-        order.address = request.POST['address']
-        order.plan = request.POST['plan']
-        order.save()
-
-        print('saved')
-
-        return render(
-            request,
-            'home.html',
-            {
-                'order': order
-            }
-        )
-    else:
-        return render(request, 'home.html')
+print('webform receiver queue {}'.format(receiver.QUEUE))
 
 
 def home(request, order_id=None):
@@ -54,16 +34,6 @@ def home(request, order_id=None):
 
             order.send_address_for_validation()
 
-            # message_post(
-            #     message_type='validate_address',
-            #     body={
-            #         'address': order.address,
-            #         'order_id': order.id
-            #     }
-            # )
-
-            # process the data in form.cleaned_data as required
-            # ...
             # redirect to a new URL:
             # TODO: reverse
             return HttpResponseRedirect('/order/{}/'.format(order.id))
