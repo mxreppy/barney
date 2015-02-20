@@ -97,4 +97,3 @@ STATIC_URL = '/static/'
 SQS_DEFAULT_VISIBILITY_TIMEOUT = 30  # seconds
 SQS_POLL_PERIOD = 0.25  # seconds
 AWS_REGION = 'us-east-1'
-SQS_QUEUE = "django-example-reppy2"
